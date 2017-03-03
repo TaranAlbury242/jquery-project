@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<html>
+<head>
+</head>
+<body>
+
+
+<input class="live-search-box" type="text"  placeholder="search here" />
+
+<ul class="live-search-list">  
+   <li>Lorem</li>
+   <li>ipsum</li>
+   <li>dolor</li>
+   <li>sit</li>
+   <li>amet</li>
+</ul>  
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+jQuery(document).ready(function($){
+
+$('.live-search-list li').each(function(){
+$(this).attr('data-search-term', $(this).text().toLowerCase());
+});
+
+$('.live-search-box').on('keyup', function(){
+
+var searchTerm = $(this).val().toLowerCase();
+
+    $('.live-search-list li').each(function(){
+
+        if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+
+    });
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
